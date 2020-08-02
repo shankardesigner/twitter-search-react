@@ -1,0 +1,43 @@
+.banner {
+  background: rgb(21, 50, 138);
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 70px;
+  box-shadow: 0 40px 50px 0 rgba(0, 0, 0, 0.14);
+
+  video {
+    pointer-events: none;
+  }
+}
+
+.pattern {
+  position: absolute;
+  bottom: -25px;
+  left: -5%;
+  right: -5%;
+
+  img {
+    width: 100%;
+    height: auto;
+    transform: scale(-1);
+    display: none;
+  }
+}
+
+.video-holder {
+  padding: 5px;
+  border-radius: 5px;
+  background: #fefefe;
+  overflow: hidden;
+  margin: 25px 0 -25px;
+  opacity: 0.8;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.banner-row {
+    justify-content: space-between;
+}

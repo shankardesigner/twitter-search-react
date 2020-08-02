@@ -1,0 +1,16 @@
+.header {
+    .navbar {
+        background: rgb(21, 50, 138) !important;
+        border-bottom: 1px solid darken(rgb(21, 50, 138),4%);
+    }
+
+    .navbar-collapse {
+        justify-content: space-between;
+        width: auto;
+    }
+}
+
+.logo {
+    width: 52px;
+    height: auto;
+}
