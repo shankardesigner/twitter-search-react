@@ -1,13 +1,20 @@
-import React from 'react'
-import TweetFeeds from './TweetFeeds'
+import React from "react";
+import TweetFeeds from "./TweetFeeds";
 
 function Tweet() {
-    return (
-        <>
-        <TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds /><TweetFeeds />
-        
-        </>
-    )
+  return (
+    <section className="twitter-section">
+      <div className="container">
+        <div className="row">
+          <TweetFeeds tweet="tweet"/>
+          <TweetFeeds />
+          <TweetFeeds />
+          <TweetFeeds />
+          <TweetFeeds />
+        </div>
+      </div>
+    </section>
+  );
 }
 
-export default Tweet
+export default Tweet;

@@ -11,8 +11,8 @@ function Banner() {
         <div className="banner align-items-center d-flex">
             <div className="container">
                 <div className="row align-items-center banner-row">
-                    <div class="col-6">
-                        <h1 class="display-4 text-light">Search tweets like a James Bond!</h1>
+                    <div className="col-6">
+                        <h1 className="display-4 text-light">Search tweets like a James Bond!</h1>
                     </div>
                     <div className="col-5 video-block">
                         <div className="video-holder">
