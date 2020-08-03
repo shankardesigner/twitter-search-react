@@ -1,4 +1,5 @@
-export const ApiUri = 'http://localhost:3000';
+// export const ApiUri = 'http://localhost:3000';
+export const ApiUri = 'https://tweet-search-node.herokuapp.com';
 export const FETCH_TWEETS = 'FETCH_TWEETS';
 
 export const REGISTER_ACCOUNT = 'REGISTER_ACCOUNT';
