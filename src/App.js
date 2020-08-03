@@ -51,9 +51,17 @@ function App() {
       searchTerms.replace(" ", ", %23");
     }
 
-    setTimeout(() => {
-      getAllTweets(dispatch, '', searchTerms);
-    }, 3000);
+  
+    let input = document.getElementById('search-input');
+    let timeout = null;
+
+    input.addEventListener('keyup', function (e) {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(function () {
+          getAllTweets(dispatch, '', searchTerms);
+        }, 1000);
+    });
 
   }
 
@@ -65,8 +73,6 @@ function App() {
           <Route exact path="/"><Home searchTweet={searchTweet} tweets={state}/></Route>
           <Route exact path="/login"><Login isAuth={isAuth} setAppToken={setAppToken}/></Route>
           <Route exact path="/register"><Register isAuth={isAuth}/></Route>
-          
-
         </Switch>
         </AppContext.Provider>
     </Router>

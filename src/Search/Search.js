@@ -15,6 +15,7 @@ function Search({searchTweet}) {
                     className="form-control form-control-lg"
                     placeholder="Search Tweets use space after every keyword"
                     type="text"
+                    id="search-input"
                     onChange={(e) => searchTweet(e)}
                   />
                 </div>

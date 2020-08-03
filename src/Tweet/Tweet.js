@@ -1,5 +1,6 @@
 import React from "react";
 import TweetFeeds from "./TweetFeeds";
+import Spinner from "../Spinner/Spinner";
 
 function Tweet({tweets}) {
   const avilabelTweets = tweets.tweets.map((tweet, idx) => <TweetFeeds key={idx} description={tweet} />);
@@ -7,7 +8,7 @@ function Tweet({tweets}) {
     <section className="twitter-section">
       <div className="container">
         <div className="row">
-          {avilabelTweets}
+          {tweets.loading ? <Spinner /> :avilabelTweets}
         </div>
       </div>
     </section>
