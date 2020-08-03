@@ -9,7 +9,7 @@ export const chekTokenExpire = (token) => {
     if((Date.now()/1000) > exp) {
         localStorage.removeItem("app-token");
         return;
-    }
+    } 
 
     setRequestHeader(token);
     return name;

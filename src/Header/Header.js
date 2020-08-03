@@ -1,11 +1,14 @@
 import React from 'react';
 import './header.scss';
 import { Link } from "react-router-dom";
-import AppContext from '../utils/AppContext';
 
-function Header() {
-    const context = AppContext;
-    const contextToken = context._currentValue;
+function Header({isAuth}) {
+    const clickHandle = (e) => {
+        if(isAuth) {
+            localStorage.removeItem('app-token');
+            window.location.replace("/");
+        }
+    }
 
     return (
         <header className="header">
@@ -20,7 +23,7 @@ function Header() {
                                 <Link className="nav-link active" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                            <Link to="/login" className="btn btn-primary ml-lg-3">Log in</Link>
+                                <Link to="/login" className="btn btn-primary ml-lg-3" onClick={(e) => clickHandle(e)}>{isAuth ? 'Log out' : 'Log in'}</Link>
                             </li>
                         </ul>
                     </div>

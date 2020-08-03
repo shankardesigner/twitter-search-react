@@ -20,19 +20,10 @@ import { removeRequestHeader } from './Account/setAxiosHeader';
 function App() {
   const [state, dispatch] = useReducer(tweetReducer, twitterInitialState);
   const [appToken, setAppToken] = useState(localStorage.getItem('app-token'));
-  let isAuth = false;
-  let username;
+  let isAuth;
 
-  console.log(appToken)
-
-  if(appToken != null) {
-    console.log('appToken')
-    const usernameAfterValidation = chekTokenExpire(appToken);
-
-    if(usernameAfterValidation.length > 0) {
-      isAuth = true;
-      username = usernameAfterValidation;
-    }
+  if(appToken !== null && chekTokenExpire(appToken) != undefined) {
+    isAuth = true;
   } else {
     removeRequestHeader();
   }
@@ -50,15 +41,26 @@ function App() {
 
   const searchTweet = (event) => {
     const searchTerms = event.target.value;
+
+    if(!isAuth) {
+      alert("please login to search");
+      return;
+    }
+
+    if (/^ *$/.test(searchTerms)) {
+      searchTerms.replace(" ", ", %23");
+    }
+
     setTimeout(() => {
-      console.log(searchTerms);
-    }, 5000);
+      getAllTweets(dispatch, '', searchTerms);
+    }, 3000);
+
   }
 
   return (
     <Router>
       <AppContext.Provider value={appToken}>
-      <Header />
+      <Header isAuth={isAuth}/>
         <Switch>
           <Route exact path="/"><Home searchTweet={searchTweet} tweets={state}/></Route>
           <Route exact path="/login"><Login isAuth={isAuth} setAppToken={setAppToken}/></Route>

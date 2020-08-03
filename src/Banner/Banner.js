@@ -11,14 +11,15 @@ import { chekTokenExpire } from '../Account/checkTokenExpire';
 function Banner({searchTweet}) {
     const context = AppContext;
     const contextToken = context._currentValue;
-    const usernameAfterValidation = contextToken ? chekTokenExpire(contextToken) : 'Viewers';
+
+    const usernameAfterValidation = contextToken != null ? chekTokenExpire(contextToken) : 'Viewers';
 
     return (
         <div className="banner align-items-center d-flex">
             <div className="container">
                 <div className="row align-items-center banner-row">
                     <div className="col-6">
-                     <h1 className="display-6 text-light">Hello {usernameAfterValidation} ! <p className="desc-text">🔍 Search tweets like a James Bond!</p></h1>
+                     <h1 className="display-6 text-light">Hello {usernameAfterValidation} ! <p className="desc-text">🔍 Search tweets like a Bold!</p></h1>
                     </div>
                     <div className="col-5 video-block">
                         <div className="video-holder">

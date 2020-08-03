@@ -1,9 +1,14 @@
 import Axios from "axios"
 import { ApiUri, FETCH_TWEETS, FETCH_ERRORS } from "../utils/const"
 
-export const getAllTweets = async (dispatch, source) => {
+export const getAllTweets = async (dispatch, source, query) => {
     try {
-        return await Axios.get(`${ApiUri}/tweets`,{ cancelToken: source.token }).then(res => {
+        return await Axios.get(`${ApiUri}/tweets`,{ 
+            cancelToken: source.token,
+            params: {
+                query
+              }
+         }).then(res => {
             if(res.status === 200) {
                 dispatch({
                     type: FETCH_TWEETS,

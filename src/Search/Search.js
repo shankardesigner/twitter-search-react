@@ -13,7 +13,7 @@ function Search({searchTweet}) {
                 <div className="form-group">
                   <input
                     className="form-control form-control-lg"
-                    placeholder="Search Tweets"
+                    placeholder="Search Tweets use space after every keyword"
                     type="text"
                     onChange={(e) => searchTweet(e)}
                   />
