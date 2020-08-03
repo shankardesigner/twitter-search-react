@@ -2,25 +2,39 @@
     padding-top: 30px;
     position: relative;
     z-index: 2;
+
+    .col-4 {
+        margin-bottom: 25px;
+    }
 }
+
 
 .twitter-holder {
     background: #fefefe;
     border: 1px solid #ddd;
-    margin-bottom: 30px;
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     flex-basis: 100%;
     box-shadow: 0px 4px 18px -7px rgba(0,0,0,0.1);
+    height: 100%;
 
     .image-holder {
-        width: 80px;
+        width: 48px;
+        border-radius: 100%;
+        overflow: hidden;
+        border: 1px solid #cecece;
+        align-self: flex-start;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
 
     .desc-block {
-        width: calc(100% - 130px);
+        width: calc(100% - 48px);
         padding: 0 10px;
     }
 }

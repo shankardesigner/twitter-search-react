@@ -1,7 +1,8 @@
 import React from "react";
 import './search.scss';
 
-function Search() {
+function Search({searchTweet}) {
+
   return (
     <div className="search-block">
       <div classn="row mt-4">
@@ -24,6 +25,7 @@ function Search() {
                     classn="form-control form-control-lg"
                     placeholder="Search Tweets"
                     type="text"
+                    onChange={(e) => searchTweet(e)}
                   />
                 </div>
               </div>

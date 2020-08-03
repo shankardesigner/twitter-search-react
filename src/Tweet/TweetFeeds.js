@@ -1,20 +1,21 @@
 import React from "react";
-import './tweet.scss';
+import "./tweet.scss";
 
-function TweetFeeds({ tweet }) {
+function TweetFeeds({ description }) {
   return (
     <div className="col-4">
       <div className="twitter-holder">
-        <div className="image-holder"></div>
-        <div className="desc-block">
-          <div className="info-meta"></div>
-          <p>text</p>
-          if # here
+        <div className="image-holder">
+          <img src={description.profile_image_url} alt="" />
         </div>
-        <ul className="retweetFeeds-status">
-          <li>fav</li>
-          <li>Like</li>
-        </ul>
+        <div className="desc-block">
+          <div className="info-meta">{description.screen_name}</div>
+          <p>{description.tweetText}</p>
+        </div>
+        {/* <ul className="retweetFeeds-status">
+          <li>{description.retweeted_status != null ? description.retweeted_status.favorite_count : 0}</li>
+          <li>{description.retweeted_status != null ? description.retweeted_status.retweet_count : 0}</li>
+        </ul> */}
       </div>
     </div>
   );

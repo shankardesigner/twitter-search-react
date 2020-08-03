@@ -1,16 +1,13 @@
 import React from "react";
 import TweetFeeds from "./TweetFeeds";
 
-function Tweet() {
+function Tweet({tweets}) {
+  const avilabelTweets = tweets.tweets.map((tweet, idx) => <TweetFeeds key={idx} description={tweet} />);
   return (
     <section className="twitter-section">
       <div className="container">
         <div className="row">
-          <TweetFeeds tweet="tweet"/>
-          <TweetFeeds />
-          <TweetFeeds />
-          <TweetFeeds />
-          <TweetFeeds />
+          {avilabelTweets}
         </div>
       </div>
     </section>

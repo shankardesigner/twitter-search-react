@@ -6,19 +6,19 @@ export const twitterInitialState = {
     error: []
 }
 
-export const tweetReducer = (state, action) => {
+export const tweetReducer = (state = twitterInitialState, action) => {
     switch (action.type) {
         case FETCH_TWEETS:
             return {
                 loading: false,
                 error: [],
-                tweets: [...state, action.payload]
+                tweets: action.payload
             }
             
         case FETCH_ERRORS:
             return {
                 loading: false,
-                address: [],
+                tweets: [],
                 error: action.payload
             }
         default:

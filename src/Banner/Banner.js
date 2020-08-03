@@ -6,7 +6,7 @@ import TweetBanner from '../../tweet-search.png';
 // import PromoVideo from '../../promo.mp4';
 import Search from '../Search/Search';
 
-function Banner() {
+function Banner({searchTweet}) {
     return (
         <div className="banner align-items-center d-flex">
             <div className="container">
@@ -24,7 +24,7 @@ function Banner() {
                         </div>
                     </div>
                 </div>
-                <Search />
+                <Search searchTweet={searchTweet}/>
             </div>
             <div className="pattern"><img src={Pattern} alt="" /></div>
         </div>
