@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useReducer, useState } from 'react';
+import { Redirect } from "react-router-dom";
 
-function Register() {
+import { Link } from "react-router-dom";
+import { registerReducer, registerInitialState } from '../reducers/registerReducer';
+import { registerAccount } from '../actions/accountActions';
+
+function Register({isAuth}) {
+  const [state, dispatch] = useReducer(registerReducer, registerInitialState);
+  const [user, setUser] = useState({});
+  
+  if(isAuth) {
+    return <Redirect to="/" />
+  }
+
+  const onchangeHandler = (e) => {
+    setUser({
+      ...user,
+      [e.target.name] : e.target.value
+    })
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    registerAccount(dispatch, user);
+  }
+
+  if(state.message.status === 201) {
+    return <Redirect to ="/login" />
+  }
+
   return (
     <>
       <div className="container py-4 px-md-0 d-flex align-items-center">
@@ -16,7 +44,7 @@ function Register() {
                     </p>
                   </div>
                   <span className="clearfix"></span>
-                  <form role="form">
+                  <form role="form" onSubmit={(e) => submitHandler(e)}>
                   <div className="form-group">
                       <label className="form-control-label">
                         Full name
@@ -25,8 +53,9 @@ function Register() {
                         <input
                           type="text"
                           className="form-control"
-                          id="input-name"
+                          name="name"
                           placeholder="jhon smith"
+                          onChange={(e) => onchangeHandler(e)}
                         />
                       </div>
                     </div>
@@ -38,8 +67,9 @@ function Register() {
                         <input
                           type="email"
                           className="form-control"
-                          id="input-email"
+                          name="email"
                           placeholder="name@example.com"
+                          onChange={(e) => onchangeHandler(e)}
                         />
                       </div>
                     </div>
@@ -49,14 +79,15 @@ function Register() {
                         <input
                           type="password"
                           className="form-control"
-                          id="input-password"
+                          name="password"
                           placeholder="Password"
+                          onChange={(e) => onchangeHandler(e)}
                         />
                       </div>
                     </div>
                     <div className="mt-4">
                       <button
-                        type="button"
+                        type="submit"
                         className="btn btn-primary btn-icon rounded-pill"
                       >
                         <span className="btn-inner--text">Sign in</span>
@@ -66,9 +97,9 @@ function Register() {
                 </div>
                 <div className="card-footer px-md-5 justify-content-between d-flex">
                   <small>Already registered?</small>
-                  <a href="#" className="small font-weight-bold">
+                  <Link to="/login" className="small font-weight-bold">
                     Sign in
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

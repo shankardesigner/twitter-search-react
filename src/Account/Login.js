@@ -1,6 +1,38 @@
-import React from "react";
+import React, {useState, useReducer} from "react";
+import { Link, Redirect } from "react-router-dom";
+import { loginReducer, loginInitialState } from "../reducers/loginReducer";
+import { getLogin } from "../actions/accountActions";
+import AppContext from "../utils/AppContext";
 
-function Login() {
+function Login({setAppToken, isAuth}) {
+  const [user, setUser] = useState({});
+  const [state, dispatch] = useReducer(loginReducer, loginInitialState);
+  const context = AppContext;
+  const contextToken = context._currentValue;
+
+  if(isAuth) {
+    return <Redirect to="/" />
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    getLogin(dispatch, user);
+  }
+
+  const onchangeHandler = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  if(state.user.status === 200) {
+    const token = state.user.statusText.token;
+    localStorage.setItem("app-token",token);
+    setAppToken(token);
+    return <Redirect to="/" />
+  }
+
   return (
     <>
       <div className="container py-5 px-md-0 d-flex align-items-center">
@@ -16,7 +48,7 @@ function Login() {
                     </p>
                   </div>
                   <span className="clearfix"></span>
-                  <form role="form">
+                  <form role="form" onSubmit={(e) => submitHandler(e)}>
                     <div className="form-group">
                       <label className="form-control-label">
                         Email address
@@ -25,8 +57,9 @@ function Login() {
                         <input
                           type="email"
                           className="form-control"
-                          id="input-email"
+                          name="email"
                           placeholder="name@example.com"
+                          onChange={(e) => onchangeHandler(e)}
                         />
                       </div>
                     </div>
@@ -36,14 +69,15 @@ function Login() {
                         <input
                           type="password"
                           className="form-control"
-                          id="input-password"
+                          name="password"
                           placeholder="Password"
+                          onChange={(e) => onchangeHandler(e)}
                         />
                       </div>
                     </div>
                     <div className="mt-4">
                       <button
-                        type="button"
+                        type="submit"
                         className="btn btn-primary btn-icon rounded-pill"
                       >
                         <span className="btn-inner--text">Sign in</span>
@@ -53,9 +87,9 @@ function Login() {
                 </div>
                 <div className="card-footer px-md-5 justify-content-between d-flex">
                   <small>Not registered?</small>
-                  <a href="#" className="small font-weight-bold">
+                  <Link to="/register" className="small font-weight-bold">
                     Create account
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

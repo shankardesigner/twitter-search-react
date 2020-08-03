@@ -1,26 +1,26 @@
 import React from 'react';
 import './header.scss';
-
-import Logo from "../../logo-twitter.png";
+import { Link } from "react-router-dom";
+import AppContext from '../utils/AppContext';
 
 function Header() {
+    const context = AppContext;
+    const contextToken = context._currentValue;
+
     return (
         <header className="header">
             <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
                 <div className="container">
-                    <a className="navbar-brand" href="#">
+                    <Link className="navbar-brand" to="/">
                         {/* <img src={Logo} className="logo" alt="twitter search logo" /> */}
-                        <b>SearchMyTweet</b></a>
+                        <b>SearchMyTweet</b></Link>
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                <Link className="nav-link active" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Features</a>
-                            </li>
-                            <li className="nav-item">
-                            <a href="/" className="btn btn-primary ml-lg-3">Log in</a>
+                            <Link to="/login" className="btn btn-primary ml-lg-3">Log in</Link>
                             </li>
                         </ul>
                     </div>
